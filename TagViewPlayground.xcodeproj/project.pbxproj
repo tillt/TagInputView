@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BB4F5A282F8F05030073C04D /* libTagInputView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4F5A1C2F8F04710073C04D /* libTagInputView.a */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BB4F59D42F8D88300073C04D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,7 +31,20 @@
 		BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagViewPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagViewPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagViewPlaygroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB4F5A1C2F8F04710073C04D /* libTagInputView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTagInputView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BB4F5A262F8F04910073C04D /* Exceptions for "TagInputView" folder in "TagInputView" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TagCodec.h,
+				TagInputView.h,
+				"TagInputView+Private.h",
+			);
+			target = BB4F5A1B2F8F04710073C04D /* TagInputView */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		BB4F59C42F8D882E0073C04D /* TagViewPlayground */ = {
@@ -45,6 +62,14 @@
 			path = TagViewPlaygroundUITests;
 			sourceTree = "<group>";
 		};
+		BB4F5A1D2F8F04710073C04D /* TagInputView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BB4F5A262F8F04910073C04D /* Exceptions for "TagInputView" folder in "TagInputView" target */,
+			);
+			path = TagInputView;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB4F5A282F8F05030073C04D /* libTagInputView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +95,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB4F5A1A2F8F04710073C04D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -78,6 +111,8 @@
 				BB4F59C42F8D882E0073C04D /* TagViewPlayground */,
 				BB4F59D62F8D88300073C04D /* TagViewPlaygroundTests */,
 				BB4F59E02F8D88300073C04D /* TagViewPlaygroundUITests */,
+				BB4F5A1D2F8F04710073C04D /* TagInputView */,
+				BB4F5A272F8F05030073C04D /* Frameworks */,
 				BB4F59C32F8D882E0073C04D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,11 +123,29 @@
 				BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */,
 				BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */,
 				BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */,
+				BB4F5A1C2F8F04710073C04D /* libTagInputView.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BB4F5A272F8F05030073C04D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BB4F5A182F8F04710073C04D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		BB4F59C12F8D882E0073C04D /* TagViewPlayground */ = {
@@ -163,6 +216,28 @@
 			productReference = BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		BB4F5A1B2F8F04710073C04D /* TagInputView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB4F5A222F8F04710073C04D /* Build configuration list for PBXNativeTarget "TagInputView" */;
+			buildPhases = (
+				BB4F5A182F8F04710073C04D /* Headers */,
+				BB4F5A192F8F04710073C04D /* Sources */,
+				BB4F5A1A2F8F04710073C04D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BB4F5A1D2F8F04710073C04D /* TagInputView */,
+			);
+			name = TagInputView;
+			packageProductDependencies = (
+			);
+			productName = TagView;
+			productReference = BB4F5A1C2F8F04710073C04D /* libTagInputView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -183,6 +258,9 @@
 						CreatedOnToolsVersion = 26.4;
 						TestTargetID = BB4F59C12F8D882E0073C04D;
 					};
+					BB4F5A1B2F8F04710073C04D = {
+						CreatedOnToolsVersion = 26.4;
+					};
 				};
 			};
 			buildConfigurationList = BB4F59BD2F8D882E0073C04D /* Build configuration list for PBXProject "TagViewPlayground" */;
@@ -202,6 +280,7 @@
 				BB4F59C12F8D882E0073C04D /* TagViewPlayground */,
 				BB4F59D22F8D88300073C04D /* TagViewPlaygroundTests */,
 				BB4F59DC2F8D88300073C04D /* TagViewPlaygroundUITests */,
+				BB4F5A1B2F8F04710073C04D /* TagInputView */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +325,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BB4F59D92F8D88300073C04D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F5A192F8F04710073C04D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -511,6 +597,28 @@
 			};
 			name = Release;
 		};
+		BB4F5A232F8F04710073C04D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BB4F5A242F8F04710073C04D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -546,6 +654,15 @@
 			buildConfigurations = (
 				BB4F59EE2F8D88300073C04D /* Debug */,
 				BB4F59EF2F8D88300073C04D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB4F5A222F8F04710073C04D /* Build configuration list for PBXNativeTarget "TagInputView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4F5A232F8F04710073C04D /* Debug */,
+				BB4F5A242F8F04710073C04D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
