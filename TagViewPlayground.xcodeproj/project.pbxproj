@@ -1,0 +1,556 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		BB4F59D42F8D88300073C04D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4F59BA2F8D882E0073C04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB4F59C12F8D882E0073C04D;
+			remoteInfo = TagViewPlayground;
+		};
+		BB4F59DE2F8D88300073C04D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4F59BA2F8D882E0073C04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB4F59C12F8D882E0073C04D;
+			remoteInfo = TagViewPlayground;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagViewPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagViewPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagViewPlaygroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		BB4F59C42F8D882E0073C04D /* TagViewPlayground */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TagViewPlayground;
+			sourceTree = "<group>";
+		};
+		BB4F59D62F8D88300073C04D /* TagViewPlaygroundTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TagViewPlaygroundTests;
+			sourceTree = "<group>";
+		};
+		BB4F59E02F8D88300073C04D /* TagViewPlaygroundUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TagViewPlaygroundUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB4F59BF2F8D882E0073C04D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F59D02F8D88300073C04D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F59DA2F8D88300073C04D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB4F59B92F8D882E0073C04D = {
+			isa = PBXGroup;
+			children = (
+				BB4F59C42F8D882E0073C04D /* TagViewPlayground */,
+				BB4F59D62F8D88300073C04D /* TagViewPlaygroundTests */,
+				BB4F59E02F8D88300073C04D /* TagViewPlaygroundUITests */,
+				BB4F59C32F8D882E0073C04D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB4F59C32F8D882E0073C04D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */,
+				BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */,
+				BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB4F59C12F8D882E0073C04D /* TagViewPlayground */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB4F59E72F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlayground" */;
+			buildPhases = (
+				BB4F59BE2F8D882E0073C04D /* Sources */,
+				BB4F59BF2F8D882E0073C04D /* Frameworks */,
+				BB4F59C02F8D882E0073C04D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BB4F59C42F8D882E0073C04D /* TagViewPlayground */,
+			);
+			name = TagViewPlayground;
+			packageProductDependencies = (
+			);
+			productName = TagViewPlayground;
+			productReference = BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB4F59D22F8D88300073C04D /* TagViewPlaygroundTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB4F59EA2F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlaygroundTests" */;
+			buildPhases = (
+				BB4F59CF2F8D88300073C04D /* Sources */,
+				BB4F59D02F8D88300073C04D /* Frameworks */,
+				BB4F59D12F8D88300073C04D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB4F59D52F8D88300073C04D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB4F59D62F8D88300073C04D /* TagViewPlaygroundTests */,
+			);
+			name = TagViewPlaygroundTests;
+			packageProductDependencies = (
+			);
+			productName = TagViewPlaygroundTests;
+			productReference = BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BB4F59DC2F8D88300073C04D /* TagViewPlaygroundUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB4F59ED2F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlaygroundUITests" */;
+			buildPhases = (
+				BB4F59D92F8D88300073C04D /* Sources */,
+				BB4F59DA2F8D88300073C04D /* Frameworks */,
+				BB4F59DB2F8D88300073C04D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB4F59DF2F8D88300073C04D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB4F59E02F8D88300073C04D /* TagViewPlaygroundUITests */,
+			);
+			name = TagViewPlaygroundUITests;
+			packageProductDependencies = (
+			);
+			productName = TagViewPlaygroundUITests;
+			productReference = BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB4F59BA2F8D882E0073C04D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					BB4F59C12F8D882E0073C04D = {
+						CreatedOnToolsVersion = 26.4;
+					};
+					BB4F59D22F8D88300073C04D = {
+						CreatedOnToolsVersion = 26.4;
+						TestTargetID = BB4F59C12F8D882E0073C04D;
+					};
+					BB4F59DC2F8D88300073C04D = {
+						CreatedOnToolsVersion = 26.4;
+						TestTargetID = BB4F59C12F8D882E0073C04D;
+					};
+				};
+			};
+			buildConfigurationList = BB4F59BD2F8D882E0073C04D /* Build configuration list for PBXProject "TagViewPlayground" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB4F59B92F8D882E0073C04D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = BB4F59C32F8D882E0073C04D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB4F59C12F8D882E0073C04D /* TagViewPlayground */,
+				BB4F59D22F8D88300073C04D /* TagViewPlaygroundTests */,
+				BB4F59DC2F8D88300073C04D /* TagViewPlaygroundUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB4F59C02F8D882E0073C04D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F59D12F8D88300073C04D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F59DB2F8D88300073C04D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB4F59BE2F8D882E0073C04D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F59CF2F8D88300073C04D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB4F59D92F8D88300073C04D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB4F59D52F8D88300073C04D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB4F59C12F8D882E0073C04D /* TagViewPlayground */;
+			targetProxy = BB4F59D42F8D88300073C04D /* PBXContainerItemProxy */;
+		};
+		BB4F59DF2F8D88300073C04D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB4F59C12F8D882E0073C04D /* TagViewPlayground */;
+			targetProxy = BB4F59DE2F8D88300073C04D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BB4F59E52F8D88300073C04D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BB4F59E62F8D88300073C04D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BB4F59E82F8D88300073C04D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagViewPlayground;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		BB4F59E92F8D88300073C04D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagViewPlayground;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		BB4F59EB2F8D88300073C04D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagViewPlaygroundTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TagViewPlayground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TagViewPlayground";
+			};
+			name = Debug;
+		};
+		BB4F59EC2F8D88300073C04D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagViewPlaygroundTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TagViewPlayground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TagViewPlayground";
+			};
+			name = Release;
+		};
+		BB4F59EE2F8D88300073C04D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagViewPlaygroundUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = TagViewPlayground;
+			};
+			name = Debug;
+		};
+		BB4F59EF2F8D88300073C04D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagViewPlaygroundUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_TARGET_NAME = TagViewPlayground;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB4F59BD2F8D882E0073C04D /* Build configuration list for PBXProject "TagViewPlayground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4F59E52F8D88300073C04D /* Debug */,
+				BB4F59E62F8D88300073C04D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB4F59E72F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlayground" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4F59E82F8D88300073C04D /* Debug */,
+				BB4F59E92F8D88300073C04D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB4F59EA2F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlaygroundTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4F59EB2F8D88300073C04D /* Debug */,
+				BB4F59EC2F8D88300073C04D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB4F59ED2F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlaygroundUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB4F59EE2F8D88300073C04D /* Debug */,
+				BB4F59EF2F8D88300073C04D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB4F59BA2F8D882E0073C04D /* Project object */;
+}
