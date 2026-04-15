@@ -9,6 +9,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <Foundation/Foundation.h>
+#import <TagInputView/TagCodec.h>
+
+//! Project version number for TagInputView.
+FOUNDATION_EXPORT double TagInputViewVersionNumber;
+
+//! Project version string for TagInputView.
+FOUNDATION_EXPORT const unsigned char TagInputViewVersionString[];
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class TagInputView;
@@ -160,6 +170,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// A Boolean value that determines whether duplicate normalized tags are allowed.
 @property (nonatomic) BOOL allowsDuplicateTags;
 
+/// The text cell within the NSTokenField.
+@property (nonatomic, readonly, nullable) NSCell* cell;
+
+
 /**
  Begins editing and places the insertion point at the end of the current draft.
  */
@@ -183,3 +197,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+

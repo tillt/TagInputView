@@ -7,10 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BB4F5A282F8F05030073C04D /* libTagInputView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB4F5A1C2F8F04710073C04D /* libTagInputView.a */; };
+		BB3248BA2F8F09C200292193 /* TagInputView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3248B12F8F09C200292193 /* TagInputView.framework */; };
+		BB3248C42F8F09C200292193 /* TagInputView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB3248B12F8F09C200292193 /* TagInputView.framework */; };
+		BB3248C52F8F09C200292193 /* TagInputView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB3248B12F8F09C200292193 /* TagInputView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BB3248BB2F8F09C200292193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4F59BA2F8D882E0073C04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB3248B02F8F09C200292193;
+			remoteInfo = TagInputView;
+		};
+		BB3248BD2F8F09C200292193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4F59BA2F8D882E0073C04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB4F59C12F8D882E0073C04D;
+			remoteInfo = TagViewPlayground;
+		};
+		BB3248C22F8F09C200292193 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB4F59BA2F8D882E0073C04D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB3248B02F8F09C200292193;
+			remoteInfo = TagInputView;
+		};
 		BB4F59D42F8D88300073C04D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BB4F59BA2F8D882E0073C04D /* Project object */;
@@ -27,26 +50,53 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BB3248CA2F8F09C200292193 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BB3248C52F8F09C200292193 /* TagInputView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BB3248B12F8F09C200292193 /* TagInputView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TagInputView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB3248B92F8F09C200292193 /* TagInputViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagInputViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagViewPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagViewPlaygroundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TagViewPlaygroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB4F5A1C2F8F04710073C04D /* libTagInputView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTagInputView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BB4F5A262F8F04910073C04D /* Exceptions for "TagInputView" folder in "TagInputView" target */ = {
+		BB3248C62F8F09C200292193 /* Exceptions for "TagInputView" folder in "TagInputView" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
+			publicHeaders = (
 				TagCodec.h,
 				TagInputView.h,
-				"TagInputView+Private.h",
 			);
-			target = BB4F5A1B2F8F04710073C04D /* TagInputView */;
+			target = BB3248B02F8F09C200292193 /* TagInputView */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		BB3248B22F8F09C200292193 /* TagInputView */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BB3248C62F8F09C200292193 /* Exceptions for "TagInputView" folder in "TagInputView" target */,
+			);
+			path = TagInputView;
+			sourceTree = "<group>";
+		};
+		BB3248BF2F8F09C200292193 /* TagInputViewTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TagInputViewTests;
+			sourceTree = "<group>";
+		};
 		BB4F59C42F8D882E0073C04D /* TagViewPlayground */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TagViewPlayground;
@@ -62,22 +112,29 @@
 			path = TagViewPlaygroundUITests;
 			sourceTree = "<group>";
 		};
-		BB4F5A1D2F8F04710073C04D /* TagInputView */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				BB4F5A262F8F04910073C04D /* Exceptions for "TagInputView" folder in "TagInputView" target */,
-			);
-			path = TagInputView;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BB3248AE2F8F09C200292193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB3248B62F8F09C200292193 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB3248BA2F8F09C200292193 /* TagInputView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB4F59BF2F8D882E0073C04D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB4F5A282F8F05030073C04D /* libTagInputView.a in Frameworks */,
+				BB3248C42F8F09C200292193 /* TagInputView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,13 +152,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BB4F5A1A2F8F04710073C04D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -111,7 +161,8 @@
 				BB4F59C42F8D882E0073C04D /* TagViewPlayground */,
 				BB4F59D62F8D88300073C04D /* TagViewPlaygroundTests */,
 				BB4F59E02F8D88300073C04D /* TagViewPlaygroundUITests */,
-				BB4F5A1D2F8F04710073C04D /* TagInputView */,
+				BB3248B22F8F09C200292193 /* TagInputView */,
+				BB3248BF2F8F09C200292193 /* TagInputViewTests */,
 				BB4F5A272F8F05030073C04D /* Frameworks */,
 				BB4F59C32F8D882E0073C04D /* Products */,
 			);
@@ -123,7 +174,8 @@
 				BB4F59C22F8D882E0073C04D /* TagViewPlayground.app */,
 				BB4F59D32F8D88300073C04D /* TagViewPlaygroundTests.xctest */,
 				BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */,
-				BB4F5A1C2F8F04710073C04D /* libTagInputView.a */,
+				BB3248B12F8F09C200292193 /* TagInputView.framework */,
+				BB3248B92F8F09C200292193 /* TagInputViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,7 +190,7 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BB4F5A182F8F04710073C04D /* Headers */ = {
+		BB3248AC2F8F09C200292193 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -148,6 +200,53 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		BB3248B02F8F09C200292193 /* TagInputView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB3248C72F8F09C200292193 /* Build configuration list for PBXNativeTarget "TagInputView" */;
+			buildPhases = (
+				BB3248AC2F8F09C200292193 /* Headers */,
+				BB3248AD2F8F09C200292193 /* Sources */,
+				BB3248AE2F8F09C200292193 /* Frameworks */,
+				BB3248AF2F8F09C200292193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BB3248B22F8F09C200292193 /* TagInputView */,
+			);
+			name = TagInputView;
+			packageProductDependencies = (
+			);
+			productName = TagInputView;
+			productReference = BB3248B12F8F09C200292193 /* TagInputView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BB3248B82F8F09C200292193 /* TagInputViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB3248CB2F8F09C200292193 /* Build configuration list for PBXNativeTarget "TagInputViewTests" */;
+			buildPhases = (
+				BB3248B52F8F09C200292193 /* Sources */,
+				BB3248B62F8F09C200292193 /* Frameworks */,
+				BB3248B72F8F09C200292193 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB3248BC2F8F09C200292193 /* PBXTargetDependency */,
+				BB3248BE2F8F09C200292193 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BB3248BF2F8F09C200292193 /* TagInputViewTests */,
+			);
+			name = TagInputViewTests;
+			packageProductDependencies = (
+			);
+			productName = TagInputViewTests;
+			productReference = BB3248B92F8F09C200292193 /* TagInputViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BB4F59C12F8D882E0073C04D /* TagViewPlayground */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BB4F59E72F8D88300073C04D /* Build configuration list for PBXNativeTarget "TagViewPlayground" */;
@@ -155,10 +254,12 @@
 				BB4F59BE2F8D882E0073C04D /* Sources */,
 				BB4F59BF2F8D882E0073C04D /* Frameworks */,
 				BB4F59C02F8D882E0073C04D /* Resources */,
+				BB3248CA2F8F09C200292193 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BB3248C32F8F09C200292193 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				BB4F59C42F8D882E0073C04D /* TagViewPlayground */,
@@ -216,28 +317,6 @@
 			productReference = BB4F59DD2F8D88300073C04D /* TagViewPlaygroundUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		BB4F5A1B2F8F04710073C04D /* TagInputView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BB4F5A222F8F04710073C04D /* Build configuration list for PBXNativeTarget "TagInputView" */;
-			buildPhases = (
-				BB4F5A182F8F04710073C04D /* Headers */,
-				BB4F5A192F8F04710073C04D /* Sources */,
-				BB4F5A1A2F8F04710073C04D /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				BB4F5A1D2F8F04710073C04D /* TagInputView */,
-			);
-			name = TagInputView;
-			packageProductDependencies = (
-			);
-			productName = TagView;
-			productReference = BB4F5A1C2F8F04710073C04D /* libTagInputView.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -247,6 +326,13 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					BB3248B02F8F09C200292193 = {
+						CreatedOnToolsVersion = 26.4;
+					};
+					BB3248B82F8F09C200292193 = {
+						CreatedOnToolsVersion = 26.4;
+						TestTargetID = BB4F59C12F8D882E0073C04D;
+					};
 					BB4F59C12F8D882E0073C04D = {
 						CreatedOnToolsVersion = 26.4;
 					};
@@ -257,9 +343,6 @@
 					BB4F59DC2F8D88300073C04D = {
 						CreatedOnToolsVersion = 26.4;
 						TestTargetID = BB4F59C12F8D882E0073C04D;
-					};
-					BB4F5A1B2F8F04710073C04D = {
-						CreatedOnToolsVersion = 26.4;
 					};
 				};
 			};
@@ -280,12 +363,27 @@
 				BB4F59C12F8D882E0073C04D /* TagViewPlayground */,
 				BB4F59D22F8D88300073C04D /* TagViewPlaygroundTests */,
 				BB4F59DC2F8D88300073C04D /* TagViewPlaygroundUITests */,
-				BB4F5A1B2F8F04710073C04D /* TagInputView */,
+				BB3248B02F8F09C200292193 /* TagInputView */,
+				BB3248B82F8F09C200292193 /* TagInputViewTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BB3248AF2F8F09C200292193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB3248B72F8F09C200292193 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB4F59C02F8D882E0073C04D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,6 +408,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BB3248AD2F8F09C200292193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB3248B52F8F09C200292193 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BB4F59BE2F8D882E0073C04D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,16 +443,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BB4F5A192F8F04710073C04D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BB3248BC2F8F09C200292193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB3248B02F8F09C200292193 /* TagInputView */;
+			targetProxy = BB3248BB2F8F09C200292193 /* PBXContainerItemProxy */;
+		};
+		BB3248BE2F8F09C200292193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB4F59C12F8D882E0073C04D /* TagViewPlayground */;
+			targetProxy = BB3248BD2F8F09C200292193 /* PBXContainerItemProxy */;
+		};
+		BB3248C32F8F09C200292193 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB3248B02F8F09C200292193 /* TagInputView */;
+			targetProxy = BB3248C22F8F09C200292193 /* PBXContainerItemProxy */;
+		};
 		BB4F59D52F8D88300073C04D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BB4F59C12F8D882E0073C04D /* TagViewPlayground */;
@@ -354,6 +474,104 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		BB3248C82F8F09C200292193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagInputView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BB3248C92F8F09C200292193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagInputView;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BB3248CC2F8F09C200292193 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagInputViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TagViewPlayground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TagViewPlayground";
+			};
+			name = Debug;
+		};
+		BB3248CD2F8F09C200292193 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YK4D72U3YW;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toenshoff.playem.TagInputViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TagViewPlayground.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TagViewPlayground";
+			};
+			name = Release;
+		};
 		BB4F59E52F8D88300073C04D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -597,31 +815,27 @@
 			};
 			name = Release;
 		};
-		BB4F5A232F8F04710073C04D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YK4D72U3YW;
-				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		BB4F5A242F8F04710073C04D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YK4D72U3YW;
-				EXECUTABLE_PREFIX = lib;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BB3248C72F8F09C200292193 /* Build configuration list for PBXNativeTarget "TagInputView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB3248C82F8F09C200292193 /* Debug */,
+				BB3248C92F8F09C200292193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB3248CB2F8F09C200292193 /* Build configuration list for PBXNativeTarget "TagInputViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB3248CC2F8F09C200292193 /* Debug */,
+				BB3248CD2F8F09C200292193 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BB4F59BD2F8D882E0073C04D /* Build configuration list for PBXProject "TagViewPlayground" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -654,15 +868,6 @@
 			buildConfigurations = (
 				BB4F59EE2F8D88300073C04D /* Debug */,
 				BB4F59EF2F8D88300073C04D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BB4F5A222F8F04710073C04D /* Build configuration list for PBXNativeTarget "TagInputView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BB4F5A232F8F04710073C04D /* Debug */,
-				BB4F5A242F8F04710073C04D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

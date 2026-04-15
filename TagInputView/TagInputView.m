@@ -96,8 +96,12 @@ static NSString *TagInputAttachmentCharacterString(void) {
         [self.tokenField.topAnchor constraintEqualToAnchor:self.topAnchor],
         [self.tokenField.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
     ]];
-
+    
     [self reloadData];
+}
+
+- (NSCell*)cell {
+    return self.tokenField.cell;
 }
 
 - (NSSize)intrinsicContentSize {
