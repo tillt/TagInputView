@@ -221,6 +221,23 @@
     XCTAssertNotNil(self.tagInputView.tokenField.currentEditor);
 }
 
+- (void)testBeginEditingDoesNotClearExistingTags {
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 200)
+                                                   styleMask:NSWindowStyleMaskTitled
+                                                     backing:NSBackingStoreBuffered
+                                                       defer:NO];
+    self.tagInputView.frame = NSMakeRect(20, 100, 320, 32);
+    self.tagInputView.tags = @[@"journey", @"warm pad"];
+    [window.contentView addSubview:self.tagInputView];
+
+    [self.tagInputView beginEditing];
+    [self.tagInputView controlTextDidEndEditing:[NSNotification notificationWithName:NSControlTextDidEndEditingNotification
+                                                                              object:self.tagInputView.tokenField]];
+
+    XCTAssertEqualObjects(self.tagInputView.tags, (@[@"journey", @"warm pad"]));
+    XCTAssertEqualObjects(self.tagInputView.tokenField.objectValue, (@[@"journey", @"warm pad"]));
+}
+
 - (void)testTokenFieldIsConfiguredAsSingleLineScrollingField {
     NSTextFieldCell *cell = (NSTextFieldCell *)self.tagInputView.tokenField.cell;
     XCTAssertFalse(cell.wraps);
@@ -332,13 +349,13 @@
     XCTAssertEqualObjects(self.tagInputView.textValue, @"");
 }
 
-- (void)testTabWithEmptyDraftDoesNotConsumeCommand {
+- (void)testTabWithEmptyDraftConsumesCommandForKeyViewNavigation {
     NSTextView *textView = [[NSTextView alloc] initWithFrame:NSZeroRect];
     textView.string = @"";
 
     BOOL handled = [self.tagInputView control:self.tagInputView.tokenField textView:textView doCommandBySelector:@selector(insertTab:)];
 
-    XCTAssertFalse(handled);
+    XCTAssertTrue(handled);
 }
 
 - (void)testTabIgnoringFieldEditorWithDraftCommitsTagAndConsumesCommand {

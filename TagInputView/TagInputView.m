@@ -16,6 +16,29 @@
 
 @end
 
+@interface TagInputTokenField : NSTokenField
+@property (nonatomic, weak) TagInputView *owningTagInputView;
+@end
+
+@implementation TagInputTokenField
+
+- (void)mouseDown:(NSEvent *)event {
+    TagInputView *owner = self.owningTagInputView;
+    if (owner.window != nil) {
+        NSResponder *firstResponder = owner.window.firstResponder;
+        BOOL ownerIsActive = firstResponder == owner ||
+                             firstResponder == self ||
+                             firstResponder == self.currentEditor;
+        if (!ownerIsActive) {
+            [owner.window makeFirstResponder:owner];
+        }
+    }
+
+    [super mouseDown:event];
+}
+
+@end
+
 @implementation TagInputView
 
 static const CGFloat kTagInputViewDefaultHeight = 28.0;
@@ -63,7 +86,9 @@ static NSString *TagInputAttachmentCharacterString(void) {
     [self setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
     [self setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
 
-    self.tokenField = [[NSTokenField alloc] initWithFrame:NSZeroRect];
+    TagInputTokenField *tokenField = [[TagInputTokenField alloc] initWithFrame:NSZeroRect];
+    tokenField.owningTagInputView = self;
+    self.tokenField = tokenField;
     self.tokenField.translatesAutoresizingMaskIntoConstraints = NO;
     self.tokenField.delegate = self;
     self.tokenField.editable = YES;
@@ -293,12 +318,6 @@ static NSString *TagInputAttachmentCharacterString(void) {
     }
 
     [self.window makeFirstResponder:self.tokenField];
-    NSText *currentEditor = [self.window fieldEditor:NO forObject:self.tokenField];
-    if ([currentEditor isKindOfClass:[NSTextView class]]) {
-        NSTextView *textView = (NSTextView *)currentEditor;
-        textView.string = self.draftText ?: @"";
-        textView.selectedRange = NSMakeRange(textView.string.length, 0);
-    }
 }
 
 - (void)endEditingAndCommit {
@@ -678,10 +697,16 @@ static NSString *TagInputAttachmentCharacterString(void) {
     if (commandSelector == @selector(insertTab:) ||
         commandSelector == @selector(insertTabIgnoringFieldEditor:)) {
         if (self.draftText.length == 0) {
-            return NO;
+            [self.window selectKeyViewFollowingView:self];
+            return YES;
         }
 
         [self commitCurrentDraftPreferringSuggestionSelection];
+        return YES;
+    }
+
+    if (commandSelector == @selector(insertBacktab:)) {
+        [self.window selectKeyViewPrecedingView:self];
         return YES;
     }
 
