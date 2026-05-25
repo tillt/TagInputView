@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ingestTextInput:(NSString *)text commitTrailingToken:(BOOL)commitTrailingToken;
 - (void)handleDeleteBackwardInEmptyDraft;
 - (void)acceptSuggestionAtIndex:(NSInteger)index;
+- (NSArray<NSString *> *)orderedSuggestionsForQuery:(NSString *)queryString;
 - (NSArray<NSString *> *)acceptedNormalizedTokensFromObjects:(NSArray *)tokens existingTags:(NSArray<NSString *> *)existingTags;
 - (NSString *)normalizedTagFromString:(NSString *)tag;
 - (NSString *)dedisambiguatedTagCandidateFromNormalizedTag:(NSString *)normalizedTag;

@@ -474,7 +474,6 @@ static NSString *TagInputAttachmentCharacterString(void) {
     }
 
     NSMutableOrderedSet<NSString *> *prefixMatches = [NSMutableOrderedSet orderedSet];
-    NSMutableOrderedSet<NSString *> *substringMatches = [NSMutableOrderedSet orderedSet];
     NSSet<NSString *> *selectedTags = [NSSet setWithArray:self.tags];
 
     for (NSString *suggestion in suggestions) {
@@ -483,21 +482,12 @@ static NSString *TagInputAttachmentCharacterString(void) {
             continue;
         }
 
-        NSRange queryRange = [normalizedSuggestion rangeOfString:query options:NSCaseInsensitiveSearch];
-        if (queryRange.location == NSNotFound) {
-            continue;
-        }
-
-        if (queryRange.location == 0) {
+        if ([normalizedSuggestion rangeOfString:query options:NSCaseInsensitiveSearch | NSAnchoredSearch].location == 0) {
             [prefixMatches addObject:normalizedSuggestion];
-        } else {
-            [substringMatches addObject:normalizedSuggestion];
         }
     }
 
-    NSMutableArray<NSString *> *orderedSuggestions = [NSMutableArray arrayWithArray:prefixMatches.array];
-    [orderedSuggestions addObjectsFromArray:substringMatches.array];
-    return orderedSuggestions;
+    return prefixMatches.array;
 }
 
 - (NSArray<NSString *> *)normalizedTagsFromArray:(NSArray<NSString *> *)tags {

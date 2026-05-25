@@ -125,7 +125,7 @@
     }
 
     return [self.allKnownTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *tag, NSDictionary<NSString *,id> * _Nullable bindings) {
-        return [tag rangeOfString:query options:NSCaseInsensitiveSearch].location != NSNotFound;
+        return [tag rangeOfString:query options:NSCaseInsensitiveSearch | NSAnchoredSearch].location == 0;
     }]];
 }
 
