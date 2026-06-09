@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *draftText;
 @property (nonatomic, copy) NSArray<NSString *> *resolvedSuggestions;
-@property (nonatomic, strong) NSTokenField *tokenField;
+@property (nonatomic, readonly) NSTokenField *tokenField;
 @property (nonatomic) NSUInteger inputInsertionIndex;
 @property (nonatomic) BOOL pendingCommittedTokenSync;
 

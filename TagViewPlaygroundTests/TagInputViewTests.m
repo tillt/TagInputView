@@ -321,7 +321,7 @@
 
 - (void)testDelegateCanOverrideStylePerRepresentedTag {
     TagInputViewStyleDelegate *delegate = [[TagInputViewStyleDelegate alloc] init];
-    self.tagInputView.delegate = delegate;
+    self.tagInputView.tagDelegate = delegate;
     self.tagInputView.tokenStyle = NSTokenStyleRounded;
 
     XCTAssertEqual([self.tagInputView tokenField:self.tagInputView.tokenField styleForRepresentedObject:@"featured"], NSTokenStyleSquared);

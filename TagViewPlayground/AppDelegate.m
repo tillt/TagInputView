@@ -62,7 +62,7 @@
     self.tagInputView.accessibilityIdentifier = @"tag-input-view";
     self.tagInputView.accessibilityLabel = @"Tag input";
     self.tagInputView.dataSource = self;
-    self.tagInputView.delegate = self;
+    self.tagInputView.tagDelegate = self;
     self.tagInputView.tags = launchesForEmptyTagInputUIState ? @[] : @[@"journey", @"warm pad"];
 
     self.plainTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
