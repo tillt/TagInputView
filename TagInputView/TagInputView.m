@@ -110,7 +110,11 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (BOOL)becomeFirstResponder {
-    return [super becomeFirstResponder];
+    BOOL accepted = [super becomeFirstResponder];
+    if (accepted && [self.tagDelegate respondsToSelector:@selector(tagInputViewDidFocus:)]) {
+        [self.tagDelegate tagInputViewDidFocus:self];
+    }
+    return accepted;
 }
 
 - (BOOL)accessibilityPerformPress {

@@ -73,6 +73,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)tagInputView:(TagInputView *)view shouldRemoveTag:(NSString *)tag;
 
 /**
+ Tells the delegate that the control became focused.
+
+ @param view The tag input view that became first responder.
+ */
+- (void)tagInputViewDidFocus:(TagInputView *)view;
+
+/**
  Tells the delegate that the effective tag set changed.
 
  @param view The tag input view whose tags changed.
