@@ -164,6 +164,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)reloadData;
 
+/**
+ Returns the control's preferred height when laid out at the proposed width.
+
+ The returned height preserves complete native tokens on separate lines whenever possible.
+ A token wider than the proposed width remains a single truncated token.
+ */
+- (CGFloat)preferredHeightForWidth:(CGFloat)width;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -79,10 +79,10 @@ static NSString *TagInputAttachmentCharacterString(void) {
     self.accessibilityLabel = @"Tag input editor";
 
     NSTextFieldCell *cell = (NSTextFieldCell *)self.cell;
-    cell.wraps = NO;
-    cell.scrollable = YES;
-    cell.usesSingleLineMode = YES;
-    cell.lineBreakMode = NSLineBreakByClipping;
+    cell.wraps = YES;
+    cell.scrollable = NO;
+    cell.usesSingleLineMode = NO;
+    cell.lineBreakMode = NSLineBreakByWordWrapping;
     self.textColor = NSColor.labelColor;
     self.backgroundColor = NSColor.textBackgroundColor;
     
@@ -94,7 +94,27 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (NSSize)intrinsicContentSize {
-    return NSMakeSize(NSViewNoIntrinsicMetric, kTagInputViewDefaultHeight);
+    return NSMakeSize(NSViewNoIntrinsicMetric, [self preferredHeightForWidth:NSWidth(self.bounds)]);
+}
+
+- (CGFloat)preferredHeightForWidth:(CGFloat)width {
+    NSSize nativeSize = [super intrinsicContentSize];
+    CGFloat minimumHeight = nativeSize.height > 0.0 && isfinite(nativeSize.height) ? nativeSize.height : kTagInputViewDefaultHeight;
+    if (width <= 0.0) {
+        return minimumHeight;
+    }
+
+    NSRect measurementBounds = NSMakeRect(0.0, 0.0, width, CGFLOAT_MAX);
+    CGFloat height = ceil([self.cell cellSizeForBounds:measurementBounds].height);
+    return MAX(minimumHeight, height);
+}
+
+- (void)setFrameSize:(NSSize)newSize {
+    BOOL widthChanged = fabs(newSize.width - NSWidth(self.frame)) > 0.5;
+    [super setFrameSize:newSize];
+    if (widthChanged) {
+        [self invalidateIntrinsicContentSize];
+    }
 }
 
 - (NSString *)textValue {
@@ -178,6 +198,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
     self.editable = self.isEditable;
     self.selectable = self.isEditable;
     self.suppressCallbacks = NO;
+    [self invalidateIntrinsicContentSize];
 }
 
 - (void)reloadSuggestions {
@@ -508,6 +529,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
     }
 
     [self reloadSuggestions];
+    [self invalidateIntrinsicContentSize];
 }
 
 - (void)controlTextDidEndEditing:(NSNotification *)notification {
