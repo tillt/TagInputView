@@ -2,6 +2,8 @@
 
 `TagInputView` is a reusable AppKit tag-entry control backed by `NSTokenField`.
 
+<p align="center"><img src="site/images/TagInputView_Example.png" /></p>
+
 It provides:
 
 - plain `NSArray<NSString *> *` tag values
