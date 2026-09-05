@@ -8,5 +8,6 @@ It provides:
 - synchronous suggestions
 - duplicate filtering
 - keyboard-first editing
+- width-dependent preferred height with whole-token wrapping; a token wider than
+  the control truncates within that token
 - hashtag storage conversion through `TagCodec`
-

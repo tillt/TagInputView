@@ -6,6 +6,22 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TagInputView+Private.h"
+
+@interface TagInputViewSuggestionDataSource : NSObject <TagInputViewDataSource>
+@property (nonatomic, copy) NSArray<NSString*>* suggestions;
+@end
+
+@implementation TagInputViewSuggestionDataSource
+
+- (NSArray<NSString*>*)tagInputView:(TagInputView*)view suggestionsForQuery:(NSString*)query
+{
+    (void)view;
+    (void)query;
+    return self.suggestions;
+}
+
+@end
 
 @interface TagInputViewTests : XCTestCase
 
@@ -26,6 +42,16 @@
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     // XCTest Documentation
     // https://developer.apple.com/documentation/xctest
+}
+
+- (void)testSuggestionsOnlyMatchPrefix
+{
+    TagInputView* view = [[TagInputView alloc] initWithFrame:NSZeroRect];
+    TagInputViewSuggestionDataSource* dataSource = [TagInputViewSuggestionDataSource new];
+    dataSource.suggestions = @[ @"compulsion", @"hummer", @"Minimal", @"mother" ];
+    view.dataSource = dataSource;
+
+    XCTAssertEqualObjects([view orderedSuggestionsForQuery:@"m"], (@[ @"minimal", @"mother" ]));
 }
 
 - (void)testPerformanceExample {

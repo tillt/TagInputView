@@ -50,7 +50,6 @@ static NSString *TagInputAttachmentCharacterString(void) {
     _tags = @[];
     _draftText = @"";
     _resolvedSuggestions = @[];
-    _editable = YES;
     _commitsOnComma = YES;
     _commitsOnEndEditing = YES;
     _removesLastTagOnDeleteBackward = YES;
@@ -63,49 +62,59 @@ static NSString *TagInputAttachmentCharacterString(void) {
     [self setContentHuggingPriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
     [self setContentCompressionResistancePriority:NSLayoutPriorityRequired forOrientation:NSLayoutConstraintOrientationVertical];
 
-    self.tokenField = [[NSTokenField alloc] initWithFrame:NSZeroRect];
-    self.tokenField.translatesAutoresizingMaskIntoConstraints = NO;
-    self.tokenField.delegate = self;
-    self.tokenField.editable = YES;
-    self.tokenField.selectable = YES;
-    self.tokenField.bordered = YES;
-    self.tokenField.bezeled = YES;
-    self.tokenField.bezelStyle = NSTextFieldRoundedBezel;
-    self.tokenField.drawsBackground = YES;
-    self.tokenField.font = [NSFont systemFontOfSize:13.0];
-    self.tokenField.controlSize = NSControlSizeRegular;
-    self.tokenField.alignment = NSTextAlignmentLeft;
-    self.tokenField.tokenStyle = NSTokenStyleRounded;
-    self.tokenField.completionDelay = 0.0;
-    self.tokenField.tokenizingCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@","];
-    self.tokenField.accessibilityIdentifier = @"tag-input-editor";
-    self.tokenField.accessibilityLabel = @"Tag input editor";
+    [super setDelegate:self];
+    self.editable = YES;
+    self.selectable = YES;
+    self.bordered = YES;
+    self.bezeled = YES;
+    self.bezelStyle = NSTextFieldRoundedBezel;
+    self.drawsBackground = YES;
+    self.font = [NSFont systemFontOfSize:13.0];
+    self.controlSize = NSControlSizeRegular;
+    self.alignment = NSTextAlignmentLeft;
+    self.tokenStyle = NSTokenStyleRounded;
+    self.completionDelay = 0.0;
+    self.tokenizingCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@","];
+    self.accessibilityIdentifier = @"tag-input-editor";
+    self.accessibilityLabel = @"Tag input editor";
 
-    NSTextFieldCell *cell = (NSTextFieldCell *)self.tokenField.cell;
-    cell.wraps = NO;
-    cell.scrollable = YES;
-    cell.usesSingleLineMode = YES;
-    cell.lineBreakMode = NSLineBreakByClipping;
-    self.tokenField.textColor = NSColor.labelColor;
-    self.tokenField.backgroundColor = NSColor.textBackgroundColor;
-
-    [self addSubview:self.tokenField];
-    [NSLayoutConstraint activateConstraints:@[
-        [self.tokenField.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.tokenField.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.tokenField.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.tokenField.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
-    ]];
+    NSTextFieldCell *cell = (NSTextFieldCell *)self.cell;
+    cell.wraps = YES;
+    cell.scrollable = NO;
+    cell.usesSingleLineMode = NO;
+    cell.lineBreakMode = NSLineBreakByWordWrapping;
+    self.textColor = NSColor.labelColor;
+    self.backgroundColor = NSColor.textBackgroundColor;
     
     [self reloadData];
 }
 
-- (NSCell*)cell {
-    return self.tokenField.cell;
+- (NSTokenField*)tokenField {
+    return self;
 }
 
 - (NSSize)intrinsicContentSize {
-    return NSMakeSize(NSViewNoIntrinsicMetric, kTagInputViewDefaultHeight);
+    return NSMakeSize(NSViewNoIntrinsicMetric, [self preferredHeightForWidth:NSWidth(self.bounds)]);
+}
+
+- (CGFloat)preferredHeightForWidth:(CGFloat)width {
+    NSSize nativeSize = [super intrinsicContentSize];
+    CGFloat minimumHeight = nativeSize.height > 0.0 && isfinite(nativeSize.height) ? nativeSize.height : kTagInputViewDefaultHeight;
+    if (width <= 0.0) {
+        return minimumHeight;
+    }
+
+    NSRect measurementBounds = NSMakeRect(0.0, 0.0, width, CGFLOAT_MAX);
+    CGFloat height = ceil([self.cell cellSizeForBounds:measurementBounds].height);
+    return MAX(minimumHeight, height);
+}
+
+- (void)setFrameSize:(NSSize)newSize {
+    BOOL widthChanged = fabs(newSize.width - NSWidth(self.frame)) > 0.5;
+    [super setFrameSize:newSize];
+    if (widthChanged) {
+        [self invalidateIntrinsicContentSize];
+    }
 }
 
 - (NSString *)textValue {
@@ -121,24 +130,11 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (BOOL)becomeFirstResponder {
-    [self beginEditing];
-    return YES;
-}
-
-- (void)mouseDown:(NSEvent *)event {
-    [self beginEditing];
-}
-
-- (BOOL)isAccessibilityElement {
-    return YES;
-}
-
-- (NSString *)accessibilityRole {
-    return NSAccessibilityGroupRole;
-}
-
-- (NSString *)accessibilityLabel {
-    return @"Tag input";
+    BOOL accepted = [super becomeFirstResponder];
+    if (accepted && [self.tagDelegate respondsToSelector:@selector(tagInputViewDidFocus:)]) {
+        [self.tagDelegate tagInputViewDidFocus:self];
+    }
+    return accepted;
 }
 
 - (BOOL)accessibilityPerformPress {
@@ -147,97 +143,16 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (void)setEditable:(BOOL)editable {
-    _editable = editable;
-    self.tokenField.editable = editable;
-    self.tokenField.selectable = editable;
-}
-
-- (NSFont *)font {
-    return self.tokenField.font;
-}
-
-- (void)setFont:(NSFont *)font {
-    self.tokenField.font = font ?: [NSFont systemFontOfSize:13.0];
-}
-
-- (NSControlSize)controlSize {
-    return self.tokenField.controlSize;
-}
-
-- (void)setControlSize:(NSControlSize)controlSize {
-    self.tokenField.controlSize = controlSize;
-}
-
-- (BOOL)isBordered {
-    return self.tokenField.isBordered;
-}
-
-- (void)setBordered:(BOOL)bordered {
-    self.tokenField.bordered = bordered;
-}
-
-- (BOOL)isBezeled {
-    return self.tokenField.isBezeled;
-}
-
-- (void)setBezeled:(BOOL)bezeled {
-    self.tokenField.bezeled = bezeled;
-}
-
-- (NSTextFieldBezelStyle)bezelStyle {
-    return self.tokenField.bezelStyle;
-}
-
-- (void)setBezelStyle:(NSTextFieldBezelStyle)bezelStyle {
-    self.tokenField.bezelStyle = bezelStyle;
-}
-
-- (BOOL)drawsBackground {
-    return self.tokenField.drawsBackground;
-}
-
-- (void)setDrawsBackground:(BOOL)drawsBackground {
-    self.tokenField.drawsBackground = drawsBackground;
-}
-
-- (NSColor *)backgroundColor {
-    return self.tokenField.backgroundColor ?: NSColor.textBackgroundColor;
-}
-
-- (void)setBackgroundColor:(NSColor *)backgroundColor {
-    self.tokenField.backgroundColor = backgroundColor ?: NSColor.textBackgroundColor;
-}
-
-- (void)setTextColor:(NSColor *)textColor {
-    self.tokenField.textColor = [textColor copy] ?: NSColor.labelColor;
-}
-
-- (NSColor *)textColor {
-    return self.tokenField.textColor ?: NSColor.labelColor;
-}
-
-- (NSTextAlignment)alignment {
-    return self.tokenField.alignment;
-}
-
-- (void)setAlignment:(NSTextAlignment)alignment {
-    self.tokenField.alignment = alignment;
-}
-
-- (NSString *)placeholderString {
-    return self.tokenField.placeholderString;
-}
-
-- (void)setPlaceholderString:(NSString *)placeholderString {
-    self.tokenField.placeholderString = [placeholderString copy];
+    [super setEditable:editable];
+    self.selectable = editable;
 }
 
 - (NSLineBreakMode)lineBreakMode {
-    return ((NSTextFieldCell *)self.tokenField.cell).lineBreakMode;
+    return ((NSTextFieldCell *)self.cell).lineBreakMode;
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
-    ((NSTextFieldCell *)self.tokenField.cell).lineBreakMode = lineBreakMode;
+    ((NSTextFieldCell *)self.cell).lineBreakMode = lineBreakMode;
 }
 
 - (void)setFieldBackgroundColor:(NSColor *)fieldBackgroundColor {
@@ -246,30 +161,6 @@ static NSString *TagInputAttachmentCharacterString(void) {
 
 - (NSColor *)fieldBackgroundColor {
     return self.backgroundColor;
-}
-
-- (NSTokenStyle)tokenStyle {
-    return self.tokenField.tokenStyle;
-}
-
-- (void)setTokenStyle:(NSTokenStyle)tokenStyle {
-    self.tokenField.tokenStyle = tokenStyle;
-}
-
-- (NSTimeInterval)completionDelay {
-    return self.tokenField.completionDelay;
-}
-
-- (void)setCompletionDelay:(NSTimeInterval)completionDelay {
-    self.tokenField.completionDelay = completionDelay;
-}
-
-- (NSCharacterSet *)tokenizingCharacterSet {
-    return self.tokenField.tokenizingCharacterSet ?: [NSCharacterSet characterSetWithCharactersInString:@","];
-}
-
-- (void)setTokenizingCharacterSet:(NSCharacterSet *)tokenizingCharacterSet {
-    self.tokenField.tokenizingCharacterSet = [tokenizingCharacterSet copy] ?: [NSCharacterSet characterSetWithCharactersInString:@","];
 }
 
 - (void)setTags:(NSArray<NSString *> *)tags {
@@ -292,13 +183,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
         return;
     }
 
-    [self.window makeFirstResponder:self.tokenField];
-    NSText *currentEditor = [self.window fieldEditor:NO forObject:self.tokenField];
-    if ([currentEditor isKindOfClass:[NSTextView class]]) {
-        NSTextView *textView = (NSTextView *)currentEditor;
-        textView.string = self.draftText ?: @"";
-        textView.selectedRange = NSMakeRange(textView.string.length, 0);
-    }
+    [self.window makeFirstResponder:self];
 }
 
 - (void)endEditingAndCommit {
@@ -309,10 +194,11 @@ static NSString *TagInputAttachmentCharacterString(void) {
 
 - (void)reloadData {
     self.suppressCallbacks = YES;
-    self.tokenField.objectValue = self.tags;
-    self.tokenField.editable = self.isEditable;
-    self.tokenField.selectable = self.isEditable;
+    self.objectValue = self.tags;
+    self.editable = self.isEditable;
+    self.selectable = self.isEditable;
     self.suppressCallbacks = NO;
+    [self invalidateIntrinsicContentSize];
 }
 
 - (void)reloadSuggestions {
@@ -320,7 +206,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (void)collapseEditorSelectionToInsertionPoint {
-    NSText *currentEditor = self.tokenField.currentEditor;
+    NSText *currentEditor = self.currentEditor;
     if (![currentEditor isKindOfClass:[NSTextView class]]) {
         return;
     }
@@ -332,7 +218,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
 
 - (void)scheduleCommittedSelectionCollapse {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSText *currentEditor = self.tokenField.currentEditor;
+        NSText *currentEditor = self.currentEditor;
         if (![currentEditor isKindOfClass:[NSTextView class]]) {
             return;
         }
@@ -353,8 +239,8 @@ static NSString *TagInputAttachmentCharacterString(void) {
         return;
     }
 
-    if ([self.delegate respondsToSelector:@selector(tagInputView:shouldAddTag:)] &&
-        ![self.delegate tagInputView:self shouldAddTag:normalizedDraft]) {
+    if ([self.tagDelegate respondsToSelector:@selector(tagInputView:shouldAddTag:)] &&
+        ![self.tagDelegate tagInputView:self shouldAddTag:normalizedDraft]) {
         [self reloadSuggestions];
         return;
     }
@@ -371,7 +257,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
     }
 
     NSInteger selectedIndex = 0;
-    NSArray<NSString *> *suggestions = [self tokenField:self.tokenField
+    NSArray<NSString *> *suggestions = [self tokenField:self
                                completionsForSubstring:self.draftText
                                           indexOfToken:self.tags.count
                                     indexOfSelectedItem:&selectedIndex];
@@ -398,8 +284,8 @@ static NSString *TagInputAttachmentCharacterString(void) {
             continue;
         }
 
-        if ([self.delegate respondsToSelector:@selector(tagInputView:shouldAddTag:)] &&
-            ![self.delegate tagInputView:self shouldAddTag:normalizedTag]) {
+        if ([self.tagDelegate respondsToSelector:@selector(tagInputView:shouldAddTag:)] &&
+            ![self.tagDelegate tagInputView:self shouldAddTag:normalizedTag]) {
             continue;
         }
 
@@ -423,8 +309,8 @@ static NSString *TagInputAttachmentCharacterString(void) {
 
     NSUInteger removalIndex = insertionIndex - 1;
     NSString *tag = self.tags[removalIndex];
-    if ([self.delegate respondsToSelector:@selector(tagInputView:shouldRemoveTag:)] &&
-        ![self.delegate tagInputView:self shouldRemoveTag:tag]) {
+    if ([self.tagDelegate respondsToSelector:@selector(tagInputView:shouldRemoveTag:)] &&
+        ![self.tagDelegate tagInputView:self shouldRemoveTag:tag]) {
         return;
     }
 
@@ -455,7 +341,6 @@ static NSString *TagInputAttachmentCharacterString(void) {
     }
 
     NSMutableOrderedSet<NSString *> *prefixMatches = [NSMutableOrderedSet orderedSet];
-    NSMutableOrderedSet<NSString *> *substringMatches = [NSMutableOrderedSet orderedSet];
     NSSet<NSString *> *selectedTags = [NSSet setWithArray:self.tags];
 
     for (NSString *suggestion in suggestions) {
@@ -464,26 +349,17 @@ static NSString *TagInputAttachmentCharacterString(void) {
             continue;
         }
 
-        NSRange queryRange = [normalizedSuggestion rangeOfString:query options:NSCaseInsensitiveSearch];
-        if (queryRange.location == NSNotFound) {
-            continue;
-        }
-
-        if (queryRange.location == 0) {
+        if ([normalizedSuggestion rangeOfString:query options:NSCaseInsensitiveSearch | NSAnchoredSearch].location == 0) {
             [prefixMatches addObject:normalizedSuggestion];
-        } else {
-            [substringMatches addObject:normalizedSuggestion];
         }
     }
 
-    NSMutableArray<NSString *> *orderedSuggestions = [NSMutableArray arrayWithArray:prefixMatches.array];
-    [orderedSuggestions addObjectsFromArray:substringMatches.array];
-    return orderedSuggestions;
+    return prefixMatches.array;
 }
 
 - (NSArray<NSString *> *)normalizedTagsFromArray:(NSArray<NSString *> *)tags {
-    if ([self.delegate respondsToSelector:@selector(tagInputView:normalizeTags:)]) {
-        return [self.delegate tagInputView:self normalizeTags:tags] ?: @[];
+    if ([self.tagDelegate respondsToSelector:@selector(tagInputView:normalizeTags:)]) {
+        return [self.tagDelegate tagInputView:self normalizeTags:tags] ?: @[];
     }
 
     NSMutableOrderedSet<NSString *> *normalizedTags = [NSMutableOrderedSet orderedSet];
@@ -529,8 +405,8 @@ static NSString *TagInputAttachmentCharacterString(void) {
             continue;
         }
 
-        if ([self.delegate respondsToSelector:@selector(tagInputView:shouldAddTag:)] &&
-            ![self.delegate tagInputView:self shouldAddTag:normalizedTag]) {
+        if ([self.tagDelegate respondsToSelector:@selector(tagInputView:shouldAddTag:)] &&
+            ![self.tagDelegate tagInputView:self shouldAddTag:normalizedTag]) {
             continue;
         }
 
@@ -571,14 +447,14 @@ static NSString *TagInputAttachmentCharacterString(void) {
 
 - (void)notifyObserversForCommittedChange:(BOOL)committed tagsChanged:(BOOL)tagsChanged {
     if (tagsChanged && !self.suppressCallbacks) {
-        if ([self.delegate respondsToSelector:@selector(tagInputViewDidChangeTags:)]) {
-            [self.delegate tagInputViewDidChangeTags:self];
+        if ([self.tagDelegate respondsToSelector:@selector(tagInputViewDidChangeTags:)]) {
+            [self.tagDelegate tagInputViewDidChangeTags:self];
         }
         [self sendAction:self.action to:self.target];
     }
 
-    if (committed && [self.delegate respondsToSelector:@selector(tagInputViewDidCommitTags:)]) {
-        [self.delegate tagInputViewDidCommitTags:self];
+    if (committed && [self.tagDelegate respondsToSelector:@selector(tagInputViewDidCommitTags:)]) {
+        [self.tagDelegate tagInputViewDidCommitTags:self];
     }
 }
 
@@ -611,7 +487,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (void)syncTagsFromTokenFieldCommitted:(BOOL)committed {
-    NSArray *objectValue = [self.tokenField.objectValue isKindOfClass:[NSArray class]] ? self.tokenField.objectValue : @[];
+    NSArray *objectValue = [self.objectValue isKindOfClass:[NSArray class]] ? self.objectValue : @[];
     NSArray<NSString *> *normalizedTags = [self normalizedTagsFromArray:objectValue];
     if ([self.tags isEqualToArray:normalizedTags]) {
         return;
@@ -631,7 +507,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
 #pragma mark - NSTextFieldDelegate
 
 - (void)controlTextDidBeginEditing:(NSNotification *)notification {
-    NSText *editor = self.tokenField.currentEditor;
+    NSText *editor = self.currentEditor;
     if ([editor isKindOfClass:[NSTextView class]]) {
         [self syncDraftFromEditor:(NSTextView *)editor];
     }
@@ -639,12 +515,12 @@ static NSString *TagInputAttachmentCharacterString(void) {
 }
 
 - (void)controlTextDidChange:(NSNotification *)notification {
-    NSText *editor = self.tokenField.currentEditor;
+    NSText *editor = self.currentEditor;
     if ([editor isKindOfClass:[NSTextView class]]) {
         [self syncDraftFromEditor:(NSTextView *)editor];
     }
 
-    NSArray *objectValue = [self.tokenField.objectValue isKindOfClass:[NSArray class]] ? self.tokenField.objectValue : @[];
+    NSArray *objectValue = [self.objectValue isKindOfClass:[NSArray class]] ? self.objectValue : @[];
     if (self.pendingCommittedTokenSync) {
         self.pendingCommittedTokenSync = NO;
         [self syncTagsFromTokenFieldCommitted:YES];
@@ -653,6 +529,7 @@ static NSString *TagInputAttachmentCharacterString(void) {
     }
 
     [self reloadSuggestions];
+    [self invalidateIntrinsicContentSize];
 }
 
 - (void)controlTextDidEndEditing:(NSNotification *)notification {
@@ -678,10 +555,16 @@ static NSString *TagInputAttachmentCharacterString(void) {
     if (commandSelector == @selector(insertTab:) ||
         commandSelector == @selector(insertTabIgnoringFieldEditor:)) {
         if (self.draftText.length == 0) {
-            return NO;
+            [self.window selectKeyViewFollowingView:self];
+            return YES;
         }
 
         [self commitCurrentDraftPreferringSuggestionSelection];
+        return YES;
+    }
+
+    if (commandSelector == @selector(insertBacktab:)) {
+        [self.window selectKeyViewPrecedingView:self];
         return YES;
     }
 
@@ -725,8 +608,8 @@ static NSString *TagInputAttachmentCharacterString(void) {
 
 - (NSTokenStyle)tokenField:(NSTokenField *)tokenField styleForRepresentedObject:(id)representedObject {
     if ([representedObject isKindOfClass:[NSString class]] &&
-        [self.delegate respondsToSelector:@selector(tagInputView:tokenStyleForTag:)]) {
-        return [self.delegate tagInputView:self tokenStyleForTag:(NSString *)representedObject];
+        [self.tagDelegate respondsToSelector:@selector(tagInputView:tokenStyleForTag:)]) {
+        return [self.tagDelegate tagInputView:self tokenStyleForTag:(NSString *)representedObject];
     }
 
     return self.tokenStyle;

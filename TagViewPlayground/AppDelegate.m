@@ -23,6 +23,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     BOOL launchesForEmptyTagInputUIState = [NSProcessInfo.processInfo.arguments containsObject:@"-TagInputUITestEmptyTags"];
+    BOOL launchesForManyTagInputUIState = [NSProcessInfo.processInfo.arguments containsObject:@"-TagInputUITestManyTags"];
     BOOL disablesSuggestionsForUITests = [NSProcessInfo.processInfo.arguments containsObject:@"-TagInputUITestDisableSuggestions"];
 
     self.allKnownTags = @[
@@ -62,8 +63,11 @@
     self.tagInputView.accessibilityIdentifier = @"tag-input-view";
     self.tagInputView.accessibilityLabel = @"Tag input";
     self.tagInputView.dataSource = self;
-    self.tagInputView.delegate = self;
-    self.tagInputView.tags = launchesForEmptyTagInputUIState ? @[] : @[@"journey", @"warm pad"];
+    self.tagInputView.tagDelegate = self;
+    NSArray<NSString *> *manyTags = [self.allKnownTags arrayByAddingObject:
+        @"this deliberately over-wide token cannot possibly fit within the available control width even if the window were twice as wide and therefore must truncate inside its own token rather than forcing every ordinary token to clip"];
+    self.tagInputView.tags = launchesForEmptyTagInputUIState ? @[] :
+        (launchesForManyTagInputUIState ? manyTags : @[@"journey", @"warm pad"]);
 
     self.plainTextField = [[NSTextField alloc] initWithFrame:NSZeroRect];
     self.plainTextField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -101,7 +105,7 @@
         [stackView.trailingAnchor constraintEqualToAnchor:contentView.trailingAnchor constant:-24.0],
         [stackView.topAnchor constraintEqualToAnchor:contentView.topAnchor constant:24.0],
         [self.tagInputView.widthAnchor constraintEqualToAnchor:stackView.widthAnchor],
-        [self.tagInputView.heightAnchor constraintEqualToConstant:28.0],
+        [self.tagInputView.heightAnchor constraintGreaterThanOrEqualToConstant:28.0],
         [self.plainTextField.widthAnchor constraintEqualToAnchor:stackView.widthAnchor],
         [self.serializedValueLabel.widthAnchor constraintEqualToAnchor:stackView.widthAnchor],
     ]];
@@ -125,7 +129,7 @@
     }
 
     return [self.allKnownTags filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSString *tag, NSDictionary<NSString *,id> * _Nullable bindings) {
-        return [tag rangeOfString:query options:NSCaseInsensitiveSearch].location != NSNotFound;
+        return [tag rangeOfString:query options:NSCaseInsensitiveSearch | NSAnchoredSearch].location == 0;
     }]];
 }
 

@@ -29,7 +29,7 @@
 }
 
 - (void)testLongFirstDraftUpdatesEditorValue {
-    XCUIElement *editor = self.app.groups[@"tag-input-view"];
+    XCUIElement *editor = self.app.textFields[@"tag-input-view"];
     if (![editor waitForExistenceWithTimeout:5.0]) {
         NSLog(@"%@", self.app.debugDescription);
     }
@@ -44,8 +44,20 @@
     XCTAssertEqualObjects(serializedValue.value, @"#waaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 }
 
+- (void)testReturnCommitsAndKeepsEditingInTheTagControl {
+    XCUIElement *editor = self.app.textFields[@"tag-input-view"];
+    XCTAssertTrue([editor waitForExistenceWithTimeout:5.0]);
+
+    [editor click];
+    [self.app typeText:@"first\rsecond\r"];
+
+    XCUIElement *serializedValue = self.app.staticTexts[@"serialized-value-label"];
+    XCTAssertTrue([serializedValue waitForExistenceWithTimeout:2.0]);
+    XCTAssertEqualObjects(serializedValue.value, @"#first #second");
+}
+
 - (void)testRepeatedTabDuplicateEntryKeepsSingleTag {
-    XCUIElement *editor = self.app.groups[@"tag-input-view"];
+    XCUIElement *editor = self.app.textFields[@"tag-input-view"];
     XCTAssertTrue([editor waitForExistenceWithTimeout:5.0]);
 
     [editor click];
@@ -57,7 +69,7 @@
 }
 
 - (void)testCommaCommitsTagsFromInput {
-    XCUIElement *editor = self.app.groups[@"tag-input-view"];
+    XCUIElement *editor = self.app.textFields[@"tag-input-view"];
     XCTAssertTrue([editor waitForExistenceWithTimeout:5.0]);
 
     [editor click];
@@ -66,6 +78,17 @@
     XCUIElement *serializedValue = self.app.staticTexts[@"serialized-value-label"];
     XCTAssertTrue([serializedValue waitForExistenceWithTimeout:2.0]);
     XCTAssertEqualObjects(serializedValue.value, @"#house #warm pad");
+}
+
+- (void)testManyTagsGrowControlVertically {
+    [self.app terminate];
+    self.app.launchArguments = @[@"-TagInputUITestManyTags"];
+    [self.app launch];
+
+    XCUIElement *editor = self.app.textFields[@"tag-input-view"];
+    XCTAssertTrue([editor waitForExistenceWithTimeout:5.0]);
+    XCTAssertGreaterThan(editor.frame.size.height, 28.0);
+    XCTAssertLessThan(editor.frame.size.width, self.app.windows.firstMatch.frame.size.width);
 }
 
 - (void)testLaunchPerformance {

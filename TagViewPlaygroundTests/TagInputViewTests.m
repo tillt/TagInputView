@@ -196,10 +196,26 @@
     XCTAssertEqual(target.invocationCount, 1U);
 }
 
-- (void)testControlDoesNotExposeIntrinsicHorizontalGrowth {
-    NSSize intrinsicSize = self.tagInputView.intrinsicContentSize;
-    XCTAssertEqual(intrinsicSize.width, NSViewNoIntrinsicMetric);
-    XCTAssertEqual(intrinsicSize.height, 28.0);
+- (void)testIntrinsicHeightGrowsAsCompleteTokensWrapAtNarrowerWidth {
+    self.tagInputView.tags = @[@"broken beat", @"deep journey", @"dreamy", @"dub chords", @"percussive", @"warm pad"];
+
+    CGFloat wideHeight = [self.tagInputView preferredHeightForWidth:420.0];
+    CGFloat narrowHeight = [self.tagInputView preferredHeightForWidth:180.0];
+
+    XCTAssertEqual(self.tagInputView.intrinsicContentSize.width, NSViewNoIntrinsicMetric);
+    XCTAssertGreaterThan(narrowHeight, wideHeight);
+    XCTAssertGreaterThan(narrowHeight, 28.0);
+}
+
+- (void)testSingleOverwideTokenDoesNotRequestHorizontalGrowth {
+    self.tagInputView.tags = @[@"short"];
+    CGFloat singleLineHeight = [self.tagInputView preferredHeightForWidth:180.0];
+
+    self.tagInputView.tags = @[@"this deliberately over-wide token cannot possibly fit within the available control width even if the window were twice as wide and therefore must truncate inside its own token rather than forcing every ordinary token to clip"];
+    CGFloat overwideHeight = [self.tagInputView preferredHeightForWidth:180.0];
+
+    XCTAssertEqual(self.tagInputView.intrinsicContentSize.width, NSViewNoIntrinsicMetric);
+    XCTAssertEqual(overwideHeight, singleLineHeight);
 }
 
 - (void)testTagInputCanBecomeKeyView {
@@ -221,11 +237,28 @@
     XCTAssertNotNil(self.tagInputView.tokenField.currentEditor);
 }
 
-- (void)testTokenFieldIsConfiguredAsSingleLineScrollingField {
+- (void)testBeginEditingDoesNotClearExistingTags {
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 400, 200)
+                                                   styleMask:NSWindowStyleMaskTitled
+                                                     backing:NSBackingStoreBuffered
+                                                       defer:NO];
+    self.tagInputView.frame = NSMakeRect(20, 100, 320, 32);
+    self.tagInputView.tags = @[@"journey", @"warm pad"];
+    [window.contentView addSubview:self.tagInputView];
+
+    [self.tagInputView beginEditing];
+    [self.tagInputView controlTextDidEndEditing:[NSNotification notificationWithName:NSControlTextDidEndEditingNotification
+                                                                              object:self.tagInputView.tokenField]];
+
+    XCTAssertEqualObjects(self.tagInputView.tags, (@[@"journey", @"warm pad"]));
+    XCTAssertEqualObjects(self.tagInputView.tokenField.objectValue, (@[@"journey", @"warm pad"]));
+}
+
+- (void)testTokenFieldIsConfiguredToWrapWithoutScrolling {
     NSTextFieldCell *cell = (NSTextFieldCell *)self.tagInputView.tokenField.cell;
-    XCTAssertFalse(cell.wraps);
-    XCTAssertTrue(cell.scrollable);
-    XCTAssertTrue(cell.usesSingleLineMode);
+    XCTAssertTrue(cell.wraps);
+    XCTAssertFalse(cell.scrollable);
+    XCTAssertFalse(cell.usesSingleLineMode);
 }
 
 - (void)testTokenFieldHasAccessibilityIdentifierForUITests {
@@ -304,7 +337,7 @@
 
 - (void)testDelegateCanOverrideStylePerRepresentedTag {
     TagInputViewStyleDelegate *delegate = [[TagInputViewStyleDelegate alloc] init];
-    self.tagInputView.delegate = delegate;
+    self.tagInputView.tagDelegate = delegate;
     self.tagInputView.tokenStyle = NSTokenStyleRounded;
 
     XCTAssertEqual([self.tagInputView tokenField:self.tagInputView.tokenField styleForRepresentedObject:@"featured"], NSTokenStyleSquared);
@@ -332,13 +365,13 @@
     XCTAssertEqualObjects(self.tagInputView.textValue, @"");
 }
 
-- (void)testTabWithEmptyDraftDoesNotConsumeCommand {
+- (void)testTabWithEmptyDraftConsumesCommandForKeyViewNavigation {
     NSTextView *textView = [[NSTextView alloc] initWithFrame:NSZeroRect];
     textView.string = @"";
 
     BOOL handled = [self.tagInputView control:self.tagInputView.tokenField textView:textView doCommandBySelector:@selector(insertTab:)];
 
-    XCTAssertFalse(handled);
+    XCTAssertTrue(handled);
 }
 
 - (void)testTabIgnoringFieldEditorWithDraftCommitsTagAndConsumesCommand {
